@@ -1,6 +1,4 @@
 // ---------- data (simulated database) ----------
-const ADMIN_USER = "admin123";
-const ADMIN_PASS = "Mf7tjkgh";
 const STATUSES = ["Reserved", "Rented", "Returned", "Inspected", "Paid"];
 const NEXT_STEP = {
     Reserved: "Confirm car collected at office",
