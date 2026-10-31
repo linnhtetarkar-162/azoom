@@ -1,0 +1,540 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AZOOM</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+    <link rel="stylesheet" href="style.css" />
+   
+    <script src="script.js" defer></script>
+</head>
+
+<body>
+    
+    <header>
+        <div class="header_container">
+            <div class="header_logo">
+                <img src="Header/azoom_logo.png" alt="AZOOM logo" />
+            </div>
+
+            <nav class="nav_container">
+                
+                <a class="nav_link" href="#Our_Fleet">
+                    <i class="fa-solid fa-car"></i>
+                    <span>Our Fleet</span>
+                </a>
+
+                <a class="nav_link" href="#Our_Service">
+                    <i class="fa-solid fa-info-circle"></i>
+                    <span>Our Service</span>
+                </a>
+
+                <!-- shown only when a customer is logged in -->
+                <a class="nav_link" href="#myBookings" id="bookingsLink" hidden>
+                    <i class="fa-solid fa-calendar-check"></i>
+                    <span>My Bookings</span>
+                </a>
+
+                <a class="nav_link" href="#" id="authLink">
+                    <i class="fa-solid fa-user"></i>
+                    <span id="authLabel">Login</span>
+                </a>
+            </nav>
+        </div>
+    </header>
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+ <!--Admin view when log in as admin-->
+    <section class="admin_panel" id="adminPanel" hidden>
+        <h1>Admin: Payment Invoices</h1>
+        <p class="admin_sub">Review customer rentals from reservation to final payment, inspect returned cars and record
+            damages.</p>
+
+        <div class="stat_container" id="adminStats"></div>
+
+        <!-- CARS TO COLLECT: reserved bookings waiting to be handed over at the office -->
+        <h2 class="admin_h2">Cars to collect</h2>
+        <div class="table_wrap">
+            <table class="invoice_table">
+                <thead>
+                    <tr>
+                        <th>Invoice</th>
+                        <th>Customer</th>
+                        <th>Car</th>
+                        <th>Pick-up date</th>
+                        <th>Office</th>
+                        <th>Contract</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="collectRows"></tbody>
+            </table>
+        </div>
+
+        <!-- Damaged cars inspection -->
+        <h2 class="admin_h2">Damaged cars</h2>
+        <div class="table_wrap">
+            <table class="invoice_table">
+                <thead>
+                    <tr>
+                        <th>Invoice</th>
+                        <th>Customer</th>
+                        <th>Car</th>
+                        <th>Damage found</th>
+                        <th>Charge</th>
+                        <th>Status</th>
+                        <th>Email</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="damageRows"></tbody>
+            </table>
+        </div>
+
+    <!--Invoice/Email send-->
+        <h2 class="admin_h2">All invoices</h2>
+        <div class="admin_filter">
+            <label for="statusFilter">Filter by status: </label>
+            <select id="statusFilter"></select>
+        </div>
+
+        <div class="table_wrap">
+            <table class="invoice_table">
+                <thead>
+                    <tr>
+                        <th>Invoice</th>
+                        <th>Customer</th>
+                        <th>Car</th>
+                        <th>Rental dates</th>
+                        <th>Total</th>
+                        <th>Balance due</th>
+                        <th>Status</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="invoiceRows"></tbody>
+            </table>
+        </div>
+    </section>
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->   <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero_text">
+                <h1>HAPPY TRIPS. SMALL BILLS.</h1>
+                <p>Family-ready SUVs and MPVs, island-wide.</p>
+                <button class="hero_btn" id="heroBtn">SIGN UP AND SAVE</button>
+            </div>
+        </section>
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->    
+        <!-- My booking for each account -->
+        <section class="section_box" id="myBookings" hidden>
+            <h1>My Bookings</h1>
+            <p class="admin_sub">Track your rentals from reservation to final payment. Return your car and pay your
+                final bill here.</p>
+            <div class="booking_list" id="bookingList"></div>
+        </section>
+<!---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------><!-- ABOUT US -->
+        <section class="section_box" id="About-Us">
+            <h1>About Us</h1>
+
+            <div class="about_us_container">
+                <img src="Body/SUV_Snowfield.png" alt="Family enjoying a road trip" />
+
+                <div class="about_us_text">
+                    <h2>Your Family Deserves Only The Profound Experience</h2>
+                    <p>
+                        AZOOM is Singapore’s family-first SUV rental service. With a
+                        modern fleet of hybrid, 5-seater and 7-seater SUVs, flexible
+                        rentals from one day, transparent pricing and 24/7 roadside
+                        assistance, we make every trip spacious, affordable and
+                        stress-free. Your smile is our smile and we are here to guarantee that.
+                    </p>
+                </div>
+            </div>
+        </section>
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- Our fleet-->
+        <section class="section_box" id="Our_Fleet">
+            <h1>Our Fleet</h1>
+
+            <div class="Fleet_type_container">
+                <h2>Hybrid SUV</h2>
+
+                <div class="Fleet-type">
+                    <article class="Fleet">
+                        <img src="Body/Cars/Hybrid_SUVs/1-Mazda-CX-5-review-2026-UK.jpg" alt="Mazda CX-5 Hybrid" />
+                        <p>S$125/day</p>
+                        <h3>Mazda CX-5</h3>
+                    </article>
+                </div>
+
+                <div class="Fleet-type">
+                    <article class="Fleet">
+                        <img src="Body/Cars/Hybrid_SUVs/Nissan X-Trail Hybrid.png" alt="Nissan X-Trail Hybrid" />
+                        <p>S$130/day</p>
+                        <h3>Nissan X-Trail</h3>
+                    </article>
+                </div>
+
+                <div class="Fleet-type">
+                    <article class="Fleet">
+                        <img src="Body/Cars/Hybrid_SUVs/Kia Niro Hybrid.png" alt="Kia Niro Hybrid" />
+                        <p>S$105/day</p>
+                        <h3>Kia Niro</h3>
+                    </article>
+                </div>
+
+                <div class="Fleet-type">
+                    <article class="Fleet">
+                        <img src="Body/Cars/Hybrid_SUVs/Hyundai Kona Hybrid.png" alt="Hyundai Kona Hybrid" />
+                        <p>S$100/day</p>
+                        <h3>Hyundai Kona</h3>
+                    </article>
+                </div>
+
+                <div class="Fleet-type">
+                    <article class="Fleet">
+                        <img src="Body/Cars/Hybrid_SUVs/Toyota Yaris Cross Hybrid.jpg"
+                            alt="Toyota Yaris Cross Hybrid" />
+                        <p>S$95/day</p>
+                        <h3>Toyota Yaris Cross</h3>
+                    </article>
+                </div>
+            </div>
+
+            <div class="Fleet_type_container">
+                <h2>5-Seater SUV</h2>
+
+                <div class="Fleet-type">
+                    <article class="Fleet">
+                        <img src="Body/Cars/5_seaters_SUVs/Volvo XC-90.png" alt="Volvo XC-90" />
+                        <p>S$300/day</p>
+                        <h3>Volvo XC-90</h3>
+                    </article>
+                </div>
+
+                <div class="Fleet-type">
+                    <article class="Fleet">
+                        <img src="Body/Cars/5_seaters_SUVs/Nissan X-Trail.png" alt="Nissan X-Trail" />
+                        <p>S$205/day</p>
+                        <h3>Nissan X-Trail</h3>
+                    </article>
+                </div>
+
+                <div class="Fleet-type">
+                    <article class="Fleet">
+                        <img src="Body/Cars/5_seaters_SUVs/Skoda Kodiaq.png" alt="Skoda Kodiaq" />
+                        <p>S$160/day</p>
+                        <h3>Skoda Kodiaq</h3>
+                    </article>
+                </div>
+
+                <div class="Fleet-type">
+                    <article class="Fleet">
+                        <img src="Body/Cars/5_seaters_SUVs/Mercedes Benz GLB180.png" alt="Mercedes Benz GLB180" />
+                        <p>S$210/day</p>
+                        <h3>Mercedes Benz GLB180</h3>
+                    </article>
+                </div>
+
+                <div class="Fleet-type">
+                    <article class="Fleet">
+                        <img src="Body/Cars/5_seaters_SUVs/Mazda CX-9.png" alt="Mazda CX-9" />
+                        <p>S$170/day</p>
+                        <h3>Mazda CX-9</h3>
+                    </article>
+                </div>
+            </div>
+
+            <div class="Fleet_type_container">
+                <h2>7-Seater SUV</h2>
+
+                <div class="Fleet-type">
+                    <article class="Fleet">
+                        <img src="Body/Cars/7_seaters_SUVs/Mercedes Benz GLC250.png" alt="Mercedes Benz GLC250" />
+                        <p>S$250/day</p>
+                        <h3>Mercedes Benz GLC250</h3>
+                    </article>
+                </div>
+
+                <div class="Fleet-type">
+                    <article class="Fleet">
+                        <img src="Body/Cars/7_seaters_SUVs/BMW X3.png" alt="BMW X3" />
+                        <p>S$260/day</p>
+                        <h3>BMW X3</h3>
+                    </article>
+                </div>
+
+                <div class="Fleet-type">
+                    <article class="Fleet">
+                        <img src="Body/Cars/7_seaters_SUVs/Volvo XC-60.png" alt="Volvo XC-60" />
+                        <p>S$230/day</p>
+                        <h3>Volvo XC-60</h3>
+                    </article>
+                </div>
+
+                <div class="Fleet-type">
+                    <article class="Fleet">
+                        <img src="Body/Cars/7_seaters_SUVs/Nissan Qashqai.png" alt="Nissan Qashqai" />
+                        <p>S$110/day</p>
+                        <h3>Nissan Qashqai</h3>
+                    </article>
+                </div>
+            </div>
+        </section>
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- Why choose us -->
+        <section class="section_box" id="Why_Our_Cars">
+            <h1>Why Our SUVs?</h1>
+
+            <div class="choose_container">
+                <div class="choose_text">
+                    <h2>A Perfect Balance</h2>
+                    <p>
+                        Our fleet of rental SUVs and hybrid SUVs offers the ideal blend
+                        of comfort, space, and performance. Your family can embark on
+                        a smooth adventure with ample room for both passengers and
+                        luggage.
+                    </p>
+                </div>
+                <img src="Body/Services/SUV driving person.png" alt="Smiling driver behind the wheel" />
+            </div>
+
+            <div class="choose_container">
+                <img src="Body/Services/Camping_SUV.jpg" alt="SUV ready for a camping trip" />
+                <div class="choose_text">
+                    <h2>Spacious Interiors</h2>
+                    <p>
+                        Can't find a good place to set up tents? Don't worry.
+                        Our SUV interiors are spacious enough to make every journey
+                        enjoyable and stress-free.
+                    </p>
+                </div>
+            </div>
+
+            <h1>Our Hybrid SUVs</h1>
+
+            <div class="choose_container">
+                <div class="choose_text">
+                    <h2>Eco-Friendly Options</h2>
+                    <p>
+                        Enjoy a greener journey with our hybrid SUVs. These cars offer
+                        reduced emissions and improved fuel efficiency, making them
+                        a smart choice for nature lovers.
+                    </p>
+                </div>
+                <img src="Body/Services/Hybrid_SUV.jpg" alt="Hybrid SUV in an outdoor setting" />
+            </div>
+
+            <div class="choose_container">
+                <img src="Body/Services/Hybrid SUV features.png" alt="Hybrid SUV dashboard features" />
+                <div class="choose_text">
+                    <h2>Modern Features</h2>
+                    <p>
+                        Our rental hybrid SUVs come equipped with the latest technologies:
+                        advanced navigation systems, auto pilot, comfort features and
+                        cutting-edge safety features for a superior experience.
+                    </p>
+                </div>
+            </div>
+
+            <div class="choose_container">
+                <div class="choose_text">
+                    <h2>Cost Savings</h2>
+                    <p>
+                        Our aim is to provide the best experience for families; your smile
+                        is our smile. For that, our hybrid SUVs are tailored to provide
+                        excellent fuel consumption. Throughout your rental period, you
+                        will be saving enormous fuel costs.
+                    </p>
+                </div>
+                <img src="Body/Services/fuel-save.jpg" alt="Fuel savings" />
+            </div>
+        </section>
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- How to use -->
+        <section class="section_box" id="Our_Service">
+            <h1>How To Use Our Service?</h1>
+
+            <div class="usage_container">
+                <article class="usage_card">
+                    <h2>Booking</h2>
+                    <img src="Body/Usage/car-rental-booking-reservation-and-sharing-using-service-mobile-application-with-route-or-points-location-in-hand-drawn-cartoon-flat-illustration-vector.jpg"
+                        alt="Booking" />
+                    <p>
+                        Choose the date, choose the ride and deposit 30% of the rent price
+                        to confirm your booking.
+                    </p>
+                </article>
+
+                <article class="usage_card">
+                    <h2>E-payment</h2>
+                    <img src="Body/Usage/booking-payment-parking-using-smartphone-car-sharing-service-phone-isolated-vector-linear-icon-pay-online-lot-255010741.webp"
+                        alt="E-payment" />
+                    <p>Payment via credit card, debit card or cash at our offices</p>
+                </article>
+
+                <article class="usage_card">
+                    <h2>Collect</h2>
+                    <img src="Body/Usage/collect_white_bg.png" alt="Collect" />
+                    <p>
+                        Collect the car at our designated offices after signing the
+                        contract
+                    </p>
+                </article>
+
+                <article class="usage_card">
+                    <h2>Drive</h2>
+                    <img src="Body/Usage/family-road-trip-children-parents-packing-car-vacation-travel-holiday-automobile-voyage_575670-778.avif"
+                        alt="Drive" />
+                    <p>Get behind the steering wheel and hit the road!</p>
+                </article>
+            </div>
+
+            <input class="car_rent_btn" type="button" value="Rent a car now" />
+        </section>
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+        <!-- Reviews -->
+        <section class="section_box" id="Reviews">
+            <h1>Our Top Reviews</h1>
+
+            <div class="review_container">
+                <article class="review_card">
+                    <input type="checkbox" id="review1" class="read_more_toggle" />
+                    <p class="review_flavor_text">
+                        My name is Yira Koshikage. I'm 33 years old. My house is in the
+                        north section of Singapore, Yishun, where all the HDBs are, and I
+                        am not married. I work as an employee for the Old Changee outlet,
+                        and I get home every day by 10 PM at the earliest. I smoke 5 packs
+                        a day, and I chug down every drink I see. I'm in bed by 3 AM, and
+                        make sure I get 6 hours of sleep, no matter what. After having a
+                        glass of Monster and doing about twenty minutes of "stretches"
+                        before going to bed, I usually have no problems sleeping until
+                        morning. Just like a corporate slave, I wake up with fatigue,
+                        dizziness, sore throat and everything else in the morning. I was
+                        told I got issues at my last check-up. I'm trying to explain that
+                        I'm a person who wishes to live a very quiet life. I take care not
+                        to trouble myself with any enemies, like winning and losing, that
+                        would cause me to lose sleep at night. That is how I deal with
+                        society, and I know that is what brings me happiness. Although, if
+                        I were to fight my manager I wouldn't lose.
+                    </p>
+                    <label for="review1" class="read_more_btn"></label>
+                    <span style="color: gold;">★★★★★</span>
+                    <p class="review_icon">Y</p>
+                    <p class="review_name">Yira Koshikage</p>
+                </article>
+
+                <article class="review_card">
+                    <input type="checkbox" id="review2" class="read_more_toggle" />
+                    <p class="review_flavor_text">
+                        "Driving The SUV From Azoom And Suddenly I Got Transported To Another World Of Sword And
+                        Magic Where I Got Kicked Out Of Hero Party Getting Betrayed By Side Characters
+                        But No Matter With Azoom SUV My Next Life As A Harem Protagonist Begins Now Where In This
+                        Isekai Life Where I Travel World To World In My SUV Picking Up Girls Off The Street And
+                        Becomes The Strongest Demon King Magic Sword User With Level 9999999999 Cheat Skills. I Will
+                        Live My Harem Life to Fullest With My Wives!"
+                    </p>
+                    <label for="review2" class="read_more_btn"></label>
+                    <span style="color: gold;">★★★★★</span>
+                    <p class="review_icon">A</p>
+                    <p class="review_name">Isekai Slop Enjoyer</p>
+                </article>
+
+                <article class="review_card">
+                    <input type="checkbox" id="review3" class="read_more_toggle" />
+                    <p class="review_flavor_text">
+                        I Worked At Hail For 7 years, I'll Have You Know I Graduated Top Of Hail Entertainment, I've Been Involved In Many Game Projects From Hail  
+                        When I Used To Work At Hail Entertainment For 7 years, I Know I Am 
+                        "Why You Keep Mentioning Working At Hail So Much?" I Litreally Never Talked About Working At Hail For 7 years. I Know I Am Not Better Than Many People But I Still Worked At Hail. Arrogant? I Am Not Arrogant I Am The First 2nd Generation Hail Employee That Ever Exists For Account Who Worked At Hail For 7 years.
+                        "Your Working For Hail Is Fake?" Which Part Of Me Working For Hail For 7 years is Fake? You Wanna Talk To Me Or My Dad Who Worked For 23 Years.
+                        I Will Get You Banned On "World Of Battlescraft" When I Told My Connections I Got When I Worked At Hail for 7 years.
+                    </p>
+                    <label for="review3" class="read_more_btn"></label>
+                    <span style="color: gold;">★★★★★</span>
+                    <p class="review_icon">P</p>
+                    <p class="review_name">Sirate Poftware</p>
+                </article>
+
+                <article class="review_card">
+                    <input type="checkbox" id="review4" class="read_more_toggle" />
+                    <p class="review_flavor_text">
+                        Hey Guys, Did You Know That In Terms Of Human And SUV Renting, 
+                        Azoom Is The Most Compatible Company For Renting? 
+                        Not Only Are They The Best SUV Rental Company In Singapore, 
+                        Which Is Mostly Comprised Of Strong Contenders, 
+                        Azoom Prices Are An Average Of 150-200 S$, This means They’re Cheap Enough To Be Rented By Mid Income Families Looking To Travel, 
+                        And With Their Impressively Low Fuel Usage And Durability And Access To Built In Modern Technologies, 
+                        You Can Be Rough With One.</p>
+                    <label for="review4" class="read_more_btn"></label>
+                    <span style="color: gold;">★★★★★</span>
+                    <p class="review_icon">T</p>
+                    <p class="review_name">Totally Not Vaporean Enjoyer</p>
+                </article>
+
+            </div>
+        </section>
+    </main>
+
+    <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+    <!-- Footer -->
+    <footer>
+        <div class="footer">
+            <span>&copy; 2026 AZOOM Automobile Renting Pte. Ltd. All rights reserved.</span>
+            <span>Our Socials</span>
+            <div class="footer-contents" id="contact">
+                <a href="https://www.facebook.com/" aria-label="Facebook"><i
+                        class="fa-brands fa-square-facebook" target="_blank"></i></a>
+                <a href="https://x.com/" aria-label="Twitter" target="_blank"><i class="fa-brands fa-square-twitter"></i></a>
+                <a href="https://www.instagram.com/" aria-label="Instagram" target="_blank"><i class="fa-brands fa-instagram"></i></a>
+            </div>
+        </div>
+    </footer>
+    <!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+    <!-- Login model -->
+    <div class="modal" id="authModal">
+        <div class="modal_box">
+            <button type="button" class="modal_close" id="closeModal" aria-label="Close">&times;</button>
+
+            <h2>Login</h2>
+
+            <form id="loginForm">
+                <label for="loginUser">Email</label>
+                <input type="text" id="loginUser" placeholder="name@gmail.com" required />
+                <label for="loginPass">Password</label>
+                <input type="password" id="loginPass" required />
+                <button type="submit" class="auth_submit">Login</button>
+            </form>
+
+            <p class="auth_msg" id="authMsg"></p>
+        </div>
+    </div>
+<!--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------->
+    <!-- Invoice for admin -->
+    <div class="modal" id="invoiceModal">
+        <div class="modal_box wide">
+            <button type="button" class="modal_close" id="closeInvoice" aria-label="Close">&times;</button>
+            <div id="invoiceBody"></div>
+        </div>
+    </div>
+
+    <!-- email for admin -->
+    <div class="modal" id="emailModal">
+        <div class="modal_box wide">
+            <button type="button" class="modal_close" id="closeEmail" aria-label="Close">&times;</button>
+            <div id="emailBody"></div>
+        </div>
+    </div>
+
+    <!-- customer -->
+    <div class="modal" id="bookingModal">
+        <div class="modal_box wide">
+            <button type="button" class="modal_close" id="closeBooking" aria-label="Close">&times;</button>
+            <div id="bookingBody"></div>
+        </div>
+    </div>
+
+</body>
+
+</html>
